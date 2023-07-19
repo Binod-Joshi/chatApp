@@ -1,0 +1,13 @@
+* {
+  margin: 0;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+body {
+  background-image: linear-gradient(0deg,#92a4f5,#92a4f5);
+}
+

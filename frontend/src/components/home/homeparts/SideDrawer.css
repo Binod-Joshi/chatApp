@@ -1,0 +1,182 @@
+.sidedrawerNav{
+    display: flex;
+    justify-content: space-between;
+    width:calc(100%-1px);
+    height:50px;
+    border: 1px solid black;
+    align-items: center;
+}
+.search{
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+.notificationAndSetting{
+    margin-right: 15px;
+    display: flex;
+    gap: 10px;
+    cursor: pointer;
+}
+.notification{
+    padding-left: px;
+    padding-right: px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: larger;
+}
+.notification1{
+    padding-left: 5px;
+    padding-right: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: larger;
+    
+    border-radius: 10px;
+   
+}
+.notification1:hover{
+    background-color: aliceblue;
+}
+.notification2{
+    padding-left: 5px;
+    padding-right: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: larger;
+    border-radius: 10px;
+    background-color: aqua;
+   
+}
+
+.offcanvas-end {
+    height: fit-content;
+    width: 280px;
+}
+.btn-transparent:hover{
+    background-color: aliceblue;
+    
+}
+.btn-transparent:focus,
+  .btn-transparent:active {
+    box-shadow: none;
+  }
+  .offcanvas-header {
+    /* display: flex;
+    align-items: center;
+    justify-content: space-between; */
+    flex-direction: column;
+    padding: 1rem 0rem;
+    background-image: linear-gradient(0deg,#92a4f5,#ffffff9a);
+}  
+
+/* for logout */
+.logoutuser{
+    /* margin-right: 20px; */
+    font-size: 18px;
+    font-size: 300;
+    cursor: pointer;
+    border: none;
+    background: none;
+    display: flex;
+    padding: 0 ;
+    width: 100%;
+    transition: background-color 0.5s ease;
+    /* background-color: rgb(10, 12, 12); */
+    padding: 5px;
+    border-radius: 5px;
+}
+.profilelink>p, .updateprofilelink>p{
+    font-size: 18px;
+    font-size: 300;
+    cursor: pointer;
+    border: none;
+    background: none;
+    width: 100%;
+    color: black;
+    transition: background-color 0.5s ease;
+    padding: 5px;
+    border-radius: 5px;
+    
+}
+.btn-close{
+    width: 75%;
+}
+.logoutuser:hover,.profilelink>p:hover, .updateprofilelink>p:hover,.btn-close:hover{
+   background-color: #4863d9;
+   
+}
+
+/* for left drawer */
+.searchForm{
+    display: flex;
+    gap: 4px;
+}
+.inputSearch{
+    width: 95%;
+    padding: 5px 10px;
+    border: 1px solid gray;
+    border-radius: 4px;
+}
+.searchicon{
+    border: none;
+    border-radius: 4px;
+    background-color: gray;
+}
+.searchicon:hover{
+    background-color: aqua;
+}
+
+/* for notification messages */
+.notifications{
+    position: fixed;
+    right: 68px;
+    background-color: black;
+    padding: 10px;
+    color: aliceblue;
+    border-radius: 10px;
+}
+.notificationList{
+    display: flex;
+    gap: 5px;
+    /* background-color: aliceblue; */
+    border: 1px solid green;
+    padding: 5px;
+    margin-top: 7px;
+    cursor: pointer;
+    border-radius: 6px;
+
+}
+.notificationLengthCount{
+    background: red;
+    width: fit-content;
+    min-width:  20px;
+    max-width: 80px;
+    height: 18px;
+    max-height: 25px;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid white;
+    border-radius: 50%;
+    margin-left: -13px;
+    font-size: 17px;
+    /* padding-bottom: 15px; */
+    margin-top: 2px;
+}
+.searchLine{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    margin-top: -5px;
+}
+
+@media screen and (max-width: 600px) {
+    .searchLine{
+        display: none !important;
+    }
+ }
