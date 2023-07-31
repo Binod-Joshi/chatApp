@@ -7,8 +7,11 @@ const PORT = process.env.PORT || 5000
 
 dotenv.config();
 app.use(express.json({ limit: "10mb" }));
-app.use(cors());
-
+app.use(
+  cors({
+    origin: "https://uniquechatting.netlify.app", // Add your frontend's URL here
+  })
+);
 mongoose
   .connect(process.env.MONGO_URL1, {
     useNewUrlParser: true,
