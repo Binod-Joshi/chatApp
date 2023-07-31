@@ -9,7 +9,7 @@ import {AiOutlineSend} from "react-icons/ai"
 import io from "socket.io-client";
 import UserSelectedForGroup from "./UserSelectedForGroup";
 import UserListItem from "./UserListItem";
-const ENDPOINT = "http://localhost:5000";
+const ENDPOINT = `${process.env.REACT_APP_BASE_URL_BACKEND}`;
 let socket, selectedChatCompare;
 
 const ChatBox = () => {
@@ -48,7 +48,7 @@ const ChatBox = () => {
     try {
       setLoading(true);
       let data = await fetch(
-        `http://localhost:5000/api/message/${selectedChat._id}`,
+        `${process.env.REACT_APP_BASE_URL_BACKEND}/api/message/${selectedChat._id}`,
         {
           method: "get",
           headers: {
@@ -113,7 +113,7 @@ const ChatBox = () => {
     socket.emit("stop typing", selectedChat._id);
     try {
       setNewMessage("");
-      let data = await fetch("http://localhost:5000/api/message", {
+      let data = await fetch(`${process.env.REACT_APP_BASE_URL_BACKEND}/api/message`, {
         method: "post",
         body: JSON.stringify({
           content: newMessage,
@@ -175,7 +175,7 @@ const ChatBox = () => {
       return;
     }
     try {
-      let data = await fetch("http://localhost:5000/api/chat/rename", {
+      let data = await fetch(`${process.env.REACT_APP_BASE_URL_BACKEND}/api/chat/rename`, {
         method: "put",
         body: JSON.stringify({
           chatId: selectedChat._id,
@@ -208,7 +208,7 @@ const ChatBox = () => {
     try {
       setLoadings(true);
       let datas = await fetch(
-        `http://localhost:5000/api/users?search=${input}`,
+        `${process.env.REACT_APP_BASE_URL_BACKEND}/api/users?search=${input}`,
         {
           method: "get",
           headers: {
@@ -234,7 +234,7 @@ const ChatBox = () => {
     // it is for if user remove themself from the group it call fetchchats.
     if(userToRemove._id === user._id){
       try {
-        let data = await fetch("http://localhost:5000/api/chat/groupremove", {
+        let data = await fetch(`${process.env.REACT_APP_BASE_URL_BACKEND}/api/chat/groupremove`, {
           method: "put",
           body: JSON.stringify({
             chatId: selectedChat._id,
@@ -270,7 +270,7 @@ const ChatBox = () => {
     }
 
     try {
-      let data = await fetch("http://localhost:5000/api/chat/groupremove", {
+      let data = await fetch(`${process.env.REACT_APP_BASE_URL_BACKEND}/api/chat/groupremove`, {
         method: "put",
         body: JSON.stringify({
           chatId: selectedChat?._id,
@@ -314,7 +314,7 @@ const ChatBox = () => {
       return;
     }
     try {
-      let data = await fetch("http://localhost:5000/api/chat/groupadd", {
+      let data = await fetch(`${process.env.REACT_APP_BASE_URL_BACKEND}/api/chat/groupadd`, {
         method: "put",
         body: JSON.stringify({
           chatId: selectedChat._id,
@@ -355,7 +355,7 @@ const ChatBox = () => {
       return;
     }
     try {
-      await fetch(`http://localhost:5000/api/chat/groupdelete/${selectedChat._id}`,{
+      await fetch(`${process.env.REACT_APP_BASE_URL_BACKEND}/api/chat/groupdelete/${selectedChat._id}`,{
         method:"delete",
         headers: {
           Authorization: `Bearer ${user?.token}`,

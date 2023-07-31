@@ -8,7 +8,7 @@ const DeleteAccount = () => {
     const navigate = useNavigate();
     const deleteAccount = async() => {
 
-        await fetch(`http://localhost:5000/users/${user._id}`,{
+        await fetch(`${process.env.REACT_APP_BASE_URL_BACKEND}/users/${user._id}`,{
         method:"delete",
        })
         localStorage.clear();

@@ -29,7 +29,7 @@ export const ContextPro = ({ children }) => {
     password,
     profileDP,
   }) => {
-    let user = await fetch("http://localhost:5000/api/auth/register", {
+    let user = await fetch(`${process.env.REACT_APP_BASE_URL_BACKEND}/api/auth/register`, {
       method: "post",
       body: JSON.stringify({ username, email, password, profileDP }),
       headers: {
@@ -52,7 +52,7 @@ export const ContextPro = ({ children }) => {
 
   const loginClicked = async ({ navigate, e, email, password }) => {
     e.preventDefault();
-    let user = await fetch("http://localhost:5000/api/auth/login", {
+    let user = await fetch(`${process.env.REACT_APP_BASE_URL_BACKEND}/api/auth/login`, {
       method: "post",
       body: JSON.stringify({ email, password }),
       headers: {
@@ -92,7 +92,7 @@ export const ContextPro = ({ children }) => {
     const fetchChats = async (user) => {
       try {
         setLoadingMyChat(true);
-        let data = await fetch("http://localhost:5000/api/chat", {
+        let data = await fetch(`${process.env.REACT_APP_BASE_URL_BACKEND}/api/chat`, {
           method: "get",
           headers: {
             Authorization: `Bearer ${user.token}`,
@@ -118,7 +118,7 @@ export const ContextPro = ({ children }) => {
     const fields = password
       ? { username, email, password, profilePic }
       : { username, email, profilePic };
-    let user = await fetch(`http://localhost:5000/api/users/updating`, {
+    let user = await fetch(`${process.env.REACT_APP_BASE_URL_BACKEND}/api/users/updating`, {
       method: "put",
       body: JSON.stringify(fields),
       headers: {

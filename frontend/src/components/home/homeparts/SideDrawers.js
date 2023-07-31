@@ -50,7 +50,7 @@ const SideDrawers = () => {
       setLoading(true);
       setfoundUser(true);
       let data = await fetch(
-        `http://localhost:5000/api/users?search=${search}`,
+        `${process.env.REACT_APP_BASE_URL_BACKEND}/api/users?search=${search}`,
         {
           method: "get",
           headers: {
@@ -74,7 +74,7 @@ const SideDrawers = () => {
   const accessChat = async (userId) => {
     try {
       setLoadingChat(true);
-      let data = await fetch("http://localhost:5000/api/chat", {
+      let data = await fetch(`${process.env.REACT_APP_BASE_URL_BACKEND}/api/chat`, {
         method: "post",
         body: JSON.stringify({ userId }),
         headers: {

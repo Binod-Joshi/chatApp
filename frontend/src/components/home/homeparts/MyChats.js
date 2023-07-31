@@ -44,7 +44,7 @@ const MyChats = () => {
     try {
       setLoading(true);
       let datas = await fetch(
-        `http://localhost:5000/api/users?search=${input}`,
+        `${process.env.REACT_APP_BASE_URL_BACKEND}/api/users?search=${input}`,
         {
           method: "get",
           headers: {
@@ -88,7 +88,7 @@ const MyChats = () => {
           setValidateOfSelectedUsers(true);
           return;
         }
-        let data = await fetch("http://localhost:5000/api/chat/group", {
+        let data = await fetch(`${process.env.REACT_APP_BASE_URL_BACKEND}/api/chat/group`, {
           method: "post",
           body: JSON.stringify({
             name: groupName,
