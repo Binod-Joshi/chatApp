@@ -25,7 +25,7 @@ const MyChats = () => {
   const clickUser = async(chat) => {
     await new Promise((resolve) => {
       setSelectedChat(chat)
-      setNotification(notification.filter((n) => n.chat._id !== chat._id));
+      setNotification(notification.filter((n) => n?.chat?._id !== chat?._id));
       resolve();
     });
   }
