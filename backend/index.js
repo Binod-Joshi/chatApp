@@ -40,7 +40,7 @@ const io = require("socket.io")(server, {
   pingTimeout: 60000, // it means afeter 60 sec it disconnect the connnection to save bandwidth
   cors: {
     // used to prevent cors origin error
-    origin: "http://localhost:3000",
+    origin: "https://main--uniquechatting.netlify.app/login",
   },
 });
 
