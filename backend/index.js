@@ -3,6 +3,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const app = express();
+const PORT = process.env.PORT || 5000
 
 dotenv.config();
 app.use(express.json({ limit: "10mb" }));
@@ -34,7 +35,7 @@ app.use((err, req, res, next) => {
   res.status(500).send("Something broke!");
 });
 
-const server = app.listen(5000);
+const server = app.listen(PORT);
 
 const io = require("socket.io")(server, {
   pingTimeout: 60000, // it means afeter 60 sec it disconnect the connnection to save bandwidth
