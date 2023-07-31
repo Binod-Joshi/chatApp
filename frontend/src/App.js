@@ -11,10 +11,10 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import UpdateProfile from "./components/profile/UpdateProfile";
+// import UpdateProfile from "./components/profile/UpdateProfile";
 import Profile from "./components/profile/Profile";
 import DeleteAccount from "./components/profile/DeleteAccount";
-import ChatLoading from "./components/loading/ChatLoading";
+// import ChatLoading from "./components/loading/ChatLoading";
 
 function App() {
   const {user} = UseGlobalContext();
