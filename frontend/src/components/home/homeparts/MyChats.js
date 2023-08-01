@@ -25,6 +25,7 @@ const MyChats = () => {
   const clickUser = async(chat) => {
     await new Promise((resolve) => {
       setSelectedChat(chat)
+      console.log(chat);
       setNotification(notification.filter((n) => n?.chat?._id !== chat?._id));
       resolve();
     });
@@ -108,7 +109,6 @@ const MyChats = () => {
       }
     }
   };
-
 
   return (
     <>

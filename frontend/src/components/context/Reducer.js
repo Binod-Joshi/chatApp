@@ -2,17 +2,21 @@ const reducer = (state, action) => {
     switch (action.type) {
       case "registered":
         return {
-          isLoading: false,
+          isLoading: true,
           user: action.payload,
+        };
+        case "authRequest":
+        return {
+          isLoading: false,
         };
         case "registeredFailed":
         return {
-          isLoading: false,
+          isLoading: true,
           response: action.payload,
         };
       case "login":
         return {
-          isLoading: false,
+          isLoading: true,
           user: action.payload,
         };
       case "loginfailed":
@@ -22,6 +26,7 @@ const reducer = (state, action) => {
         };
       case "logout":
         return {
+          isLoading:true,
           user: action.payload,
         };
         case "delete":
