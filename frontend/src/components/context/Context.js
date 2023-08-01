@@ -29,6 +29,7 @@ export const ContextPro = ({ children }) => {
     password,
     profileDP,
   }) => {
+    dispatch({type: "authRequest", payload:""})
     let user = await fetch(`${process.env.REACT_APP_BASE_URL_BACKEND}/api/auth/register`, {
       method: "post",
       body: JSON.stringify({ username, email, password, profileDP }),

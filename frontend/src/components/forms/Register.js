@@ -6,7 +6,7 @@ import { BiUserCircle } from "react-icons/bi";
 
 
 const Register = () => {
-  const { registerClicked,user,responseNull,response} = UseGlobalContext();
+  const { registerClicked,user,responseNull,response,isLoading} = UseGlobalContext();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -116,7 +116,7 @@ const Register = () => {
          </div>
         {passwordError && <div style={{ color: "red" }}>{passwordError}</div>}
         <button className="registerButton" type="onsubmit">
-          Register
+          {isLoading ? "Register" :"loading..."}
         </button>
       </form>
       <button className="registerLoginButton">
