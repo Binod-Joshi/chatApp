@@ -65,11 +65,11 @@ const ChatBox = () => {
         socket.emit("join chat", selectedChat?._id);
       }else{
         console.log(data);
-        // setGroupNotExist(true)
+        setGroupNotExist(true)
       }
     } catch (error) {
       console.log(error);
-      // setGroupNotExist(true)
+      setGroupNotExist(true)
     }
   };
 
