@@ -25,6 +25,8 @@ const ChatBox = () => {
     chats,
     setchats,
   } = UseGlobalContext();
+  const token = user?.token;
+  console.log(token);
   const [loading, setLoading] = useState(false);
   const [newMessage, setNewMessage] = useState("");
   const [socketConnected, setSocketConnected] = useState(false);
@@ -48,24 +50,26 @@ const ChatBox = () => {
     try {
       setLoading(true);
       let data = await fetch(
-        `${process.env.REACT_APP_BASE_URL_BACKEND}/api/message/${selectedChat._id}`,
+        `${process.env.REACT_APP_BASE_URL_BACKEND}/api/message/${selectedChat?._id}`,
         {
           method: "get",
           headers: {
-            Authorization: `Bearer ${user.token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
       data = await data.json();
-      if(Array.isArray(data) && data.length>=0){
+      if(Array.isArray(data) && data?.length>=0){
         setMessages(data);
         setLoading(false);
-        socket.emit("join chat", selectedChat._id);
+        socket.emit("join chat", selectedChat?._id);
       }else{
+        console.log(data);
         // setGroupNotExist(true)
       }
     } catch (error) {
-      setGroupNotExist(true)
+      console.log(error);
+      // setGroupNotExist(true)
     }
   };
 
@@ -110,7 +114,7 @@ const ChatBox = () => {
 
   const insideSendMessage = async() =>{
     if(newMessage){
-    socket.emit("stop typing", selectedChat._id);
+    socket.emit("stop typing", selectedChat?._id);
     try {
       setNewMessage("");
       let data = await fetch(`${process.env.REACT_APP_BASE_URL_BACKEND}/api/message`, {
@@ -121,7 +125,7 @@ const ChatBox = () => {
         }),
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${user.token}`,
+          Authorization: `Bearer ${user?.token}`,
         },
       });
       data = await data.json();
@@ -183,13 +187,13 @@ const ChatBox = () => {
         }),
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${user.token}`,
+          Authorization: `Bearer ${user?.token}`,
         },
       });
       data = await data.json();
       setSelectedChat(data);
       let updatechats = chats.map((chat) => {
-        if (chat._id === selectedChat._id) {
+        if (chat._id === selectedChat?._id) {
           return { ...chat, chatName: updatedChatName };
         } else {
           return chat;
@@ -212,7 +216,7 @@ const ChatBox = () => {
         {
           method: "get",
           headers: {
-            Authorization: `Bearer ${user.token}`,
+            Authorization: `Bearer ${user?.token}`,
           },
         }
       );
@@ -226,36 +230,36 @@ const ChatBox = () => {
   //delete users from selected users.
   const handleDelete = async (userToRemove) => {
     if (
-      selectedChat?.groupAdmin?._id !== user._id &&
-      userToRemove._id !== user._id
+      selectedChat?.groupAdmin?._id !== user?._id &&
+      userToRemove?._id !== user?._id
     ) {
       return;
     }
     // it is for if user remove themself from the group it call fetchchats.
-    if(userToRemove._id === user._id){
+    if(userToRemove?._id === user?._id){
       try {
         let data = await fetch(`${process.env.REACT_APP_BASE_URL_BACKEND}/api/chat/groupremove`, {
           method: "put",
           body: JSON.stringify({
-            chatId: selectedChat._id,
-            userId: userToRemove._id,
+            chatId: selectedChat?._id,
+            userId: userToRemove?._id,
           }),
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${user.token}`,
+            Authorization: `Bearer ${user?.token}`,
           },
         });
         data = await data.json();
-        userToRemove._id === user._id ? setSelectedChat() : setSelectedChat(data);
+        userToRemove?._id === user?._id ? setSelectedChat() : setSelectedChat(data);
         setAlreadySelectedUsers(
-          alreadySelectedUsers.filter((u) => u._id !== userToRemove._id)
+          alreadySelectedUsers.filter((u) => u?._id !== userToRemove?._id)
         );
         let updatechats = chats.map((chat) => {
-          if (chat._id === selectedChat._id) {
-            let userr = chat.users;
+          if (chat?._id === selectedChat?._id) {
+            let userr = chat?.users;
             return {
               ...chat,
-              users: userr.filter((u) => u._id !== userToRemove._id),
+              users: userr.filter((u) => u?._id !== userToRemove?._id),
             };
           } else {
             return chat;
@@ -278,20 +282,20 @@ const ChatBox = () => {
         }),
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${user.token}`,
+          Authorization: `Bearer ${user?.token}`,
         },
       });
       data = await data.json();
-      userToRemove._id === user._id ? setSelectedChat() : setSelectedChat(data);
+      userToRemove._id === user?._id ? setSelectedChat() : setSelectedChat(data);
       setAlreadySelectedUsers(
-        alreadySelectedUsers?.filter((u) => u._id === userToRemove._id)
+        alreadySelectedUsers?.filter((u) => u?._id === userToRemove?._id)
       );
       let updatechats = chats.map((chat) => {
         if (chat?._id === selectedChat?._id) {
-          let userr = chat.users;
+          let userr = chat?.users;
           return {
             ...chat,
-            users: userr.filter((u) => u._id !== userToRemove?._id),
+            users: userr.filter((u) => u?._id !== userToRemove?._id),
           };
         } else {
           return chat;
@@ -304,25 +308,25 @@ const ChatBox = () => {
 
   // to add into group
   const handleGroup = async (userToAdd) => {
-    if (selectedChat?.users.find((u) => u._id === userToAdd._id)) {
+    if (selectedChat?.users.find((u) => u?._id === userToAdd?._id)) {
       return <h1>user already exist</h1>;
     }
     if (alreadySelectedUsers.includes(userToAdd)) {
       return <h1>user already exist</h1>;
     }
-    if (selectedChat?.groupAdmin?._id !== user._id) {
+    if (selectedChat?.groupAdmin?._id !== user?._id) {
       return;
     }
     try {
       let data = await fetch(`${process.env.REACT_APP_BASE_URL_BACKEND}/api/chat/groupadd`, {
         method: "put",
         body: JSON.stringify({
-          chatId: selectedChat._id,
-          userId: userToAdd._id,
+          chatId: selectedChat?._id,
+          userId: userToAdd?._id,
         }),
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${user.token}`,
+          Authorization: `Bearer ${user?.token}`,
         },
       });
       data = await data.json();
@@ -330,8 +334,8 @@ const ChatBox = () => {
       setAlreadySelectedUsers([...alreadySelectedUsers, userToAdd]);
 
       let updatechats = chats.map((chat) => {
-        if (chat._id === selectedChat._id) {
-          let userr = chat.users;
+        if (chat?._id === selectedChat?._id) {
+          let userr = chat?.users;
           return {
             ...chat,
             users: [...userr, userToAdd], // add new user to existing users
@@ -355,7 +359,7 @@ const ChatBox = () => {
       return;
     }
     try {
-      await fetch(`${process.env.REACT_APP_BASE_URL_BACKEND}/api/chat/groupdelete/${selectedChat._id}`,{
+      await fetch(`${process.env.REACT_APP_BASE_URL_BACKEND}/api/chat/groupdelete/${selectedChat?._id}`,{
         method:"delete",
         headers: {
           Authorization: `Bearer ${user?.token}`,
