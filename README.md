@@ -1,4 +1,4 @@
-# chatapp
+# Realtime chatapp
 MERN Project
 https://uniquechatting.netlify.app/login
 
