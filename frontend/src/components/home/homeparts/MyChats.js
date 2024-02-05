@@ -7,6 +7,7 @@ import UserListItem from "./UserListItem";
 import UserSelectedForGroup from "./UserSelectedForGroup";
 import ChatLoading from "../../loading/ChatLoading";
 import NotificationInMyChat from "./NotificationInMyChat";
+import { CircularProgress } from "@mui/material";
 
 
 const MyChats = () => {
@@ -220,7 +221,7 @@ const MyChats = () => {
           </div>
           <div>
             {loading ? (
-              <h1>Loading...</h1>
+              <CircularProgress size={24} color="inherit" />
             ) : (
               searchResult
                 ?.slice(0, 4)

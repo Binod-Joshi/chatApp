@@ -1,5 +1,4 @@
 import { Navigate, Outlet } from 'react-router-dom';
-import { UseGlobalContext } from '../context/Context'
 import React, { memo } from 'react';
 
 const PrivateComponent = () => {

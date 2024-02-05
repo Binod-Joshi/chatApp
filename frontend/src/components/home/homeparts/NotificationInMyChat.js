@@ -79,7 +79,7 @@ const NotificationInMyChat = ({ chat }) => {
           </span>
         )}
         <div className="messagesContent">
-          :&nbsp;{chat?.latestMessage?.content}
+        {chat?.latestMessage?.content?":":""}&nbsp;{chat?.latestMessage?.content}
         </div>
       </div>
     </div>

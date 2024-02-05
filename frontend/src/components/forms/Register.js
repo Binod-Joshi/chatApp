@@ -3,6 +3,7 @@ import "./Register.css";
 import { Link, useNavigate } from "react-router-dom";
 import { UseGlobalContext } from "../context/Context";
 import { BiUserCircle } from "react-icons/bi";
+import { CircularProgress } from "@mui/material";
 
 
 const Register = () => {
@@ -72,6 +73,21 @@ const Register = () => {
     <div className="register">
       <span className="registerTitle">Register</span>
       <form className="registerForm" onSubmit={handleRegister}>
+      {/* <label style={{display:"flex",alignItems:"center",justifyContent:"center"}}>Profile Pics</label> */}
+         <div className="registerpicManagement">
+         
+        <label htmlFor="fileInput">
+        <BiUserCircle className="settingsPPIcon" />
+        </label>
+        <input
+              id="fileInput"
+              type="file"
+              style={{ display: "none" }}
+              className="settingsPPInput" accept="image/*"
+              onChange={imageUpload}
+            />
+        {profileDP?<img src={profileDP} alt="" /> :''}   
+         </div>
         <label>Username</label>
         <input
           className="registerInput"
@@ -99,24 +115,9 @@ const Register = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <label>Profile Pics</label>
-         <div className="registerpicManagement">
-         
-        <label htmlFor="fileInput">
-        <BiUserCircle className="settingsPPIcon" />
-        </label>
-        <input
-              id="fileInput"
-              type="file"
-              style={{ display: "none" }}
-              className="settingsPPInput" accept="image/*"
-              onChange={imageUpload}
-            />
-        {profileDP?<img src={profileDP} alt="" /> :''}   
-         </div>
         {passwordError && <div style={{ color: "red" }}>{passwordError}</div>}
         <button className="registerButton" type="onsubmit">
-          {isLoading ? "Register" :"loading..."}
+          {isLoading ? "Register" :<CircularProgress size={20} color="inherit" />}
         </button>
       </form>
       <button className="registerLoginButton">

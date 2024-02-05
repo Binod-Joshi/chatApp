@@ -3,6 +3,7 @@ import './Login.css'
 import { Link } from 'react-router-dom'
 import { UseGlobalContext } from '../context/Context'
 import { useNavigate } from 'react-router-dom'
+import { CircularProgress} from '@mui/material';
 
 const Login = () => {
   const {user,loginClicked,error,isLoading} = UseGlobalContext();
@@ -33,7 +34,7 @@ const Login = () => {
       <input className="loginInput" type="email" placeholder="Enter your email..." value={email} onChange={(e)=> setEmail(e.target.value)} required />
       <label>Password</label>
       <input className="loginInput" type="password" placeholder="Enter your password..." value={password} onChange={(e)=> setPassword(e.target.value)} required />
-      <button className="loginButton" type='submit' >{isLoading ? "Login" :"loading..."}</button>
+      <button className="loginButton" type='submit' >{isLoading ? "Login" :<CircularProgress size={20} color="inherit" />}</button>
       <p className='errorlogin'>{error}</p>
     </form>
       <button className="loginRegisterButton">

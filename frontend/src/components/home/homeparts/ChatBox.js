@@ -9,6 +9,7 @@ import {AiOutlineSend} from "react-icons/ai"
 import io from "socket.io-client";
 import UserSelectedForGroup from "./UserSelectedForGroup";
 import UserListItem from "./UserListItem";
+import { CircularProgress } from "@mui/material";
 const ENDPOINT = `${process.env.REACT_APP_BASE_URL_BACKEND}`;
 let socket, selectedChatCompare;
 
@@ -25,8 +26,7 @@ const ChatBox = () => {
     chats,
     setchats,
   } = UseGlobalContext();
-  const token = user?.token;
-  console.log(token);
+  const token = JSON.parse(localStorage.getItem("user"))?.token;
   const [loading, setLoading] = useState(false);
   const [newMessage, setNewMessage] = useState("");
   const [socketConnected, setSocketConnected] = useState(false);
@@ -401,7 +401,7 @@ const ChatBox = () => {
         <div className="chatShowed">
           {selectedChat ? (
             loading ? (
-              <h1>Loading...</h1>
+              <CircularProgress size={50} color="inherit" />
             ) : (
               <div className="singleChat">
                 <div className="messages">
@@ -427,8 +427,9 @@ const ChatBox = () => {
               </div>
             )
           ) : (
-            <div style={{ fontSize: "larger" }}>
-              Select the user to start the chat..
+            <div >
+              {/* Select the user to start the chat.. */}
+              <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/GMail_White_HeroImage.width-1600.format-webp.webp" alt="" style={{ fontSize: "larger",display:"flex",alignItems:"center",justifyContent:"center",height:"50vh" }}/>
             </div>
           )}
         </div>

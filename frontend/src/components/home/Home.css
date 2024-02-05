@@ -1,4 +1,6 @@
-
+.home{
+    background-color: aliceblue;
+}
 .box{
     display: flex;
     justify-content: space-between;

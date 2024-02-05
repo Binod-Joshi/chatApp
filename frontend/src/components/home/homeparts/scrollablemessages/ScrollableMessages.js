@@ -39,7 +39,7 @@ const ScrollableMessages = ({ messages }) => {
             messages[index]?.sender?._id ) || messages[index + 1]?.sender?._id === undefined) ? (
             <img
               className="imgOfSender"
-              src={message?.sender?.profileDP || ''}
+              src={message?.sender?.profileDP || 'https://png.pngtree.com/png-clipart/20200224/original/pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_5247852.jpg'}
               alt=""
             />
           ) : (

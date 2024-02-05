@@ -5,6 +5,7 @@
     height:50px;
     border: 1px solid black;
     align-items: center;
+    background-color: #20b24b;
 }
 .search{
     margin-left: 15px;
@@ -69,7 +70,7 @@
     justify-content: space-between; */
     flex-direction: column;
     padding: 1rem 0rem;
-    background-image: linear-gradient(0deg,#92a4f5,#ffffff9a);
+    background-image: linear-gradient(0deg,#92f597,#ffffff9a);
 }  
 
 /* for logout */
@@ -105,7 +106,7 @@
     width: 75%;
 }
 .logoutuser:hover,.profilelink>p:hover, .updateprofilelink>p:hover,.btn-close:hover{
-   background-color: #4863d9;
+   /* background-color: #4863d9; */
    
 }
 
