@@ -429,7 +429,7 @@ const ChatBox = () => {
           ) : (
             <div >
               {/* Select the user to start the chat.. */}
-              <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/GMail_White_HeroImage.width-1600.format-webp.webp" alt="" style={{ fontSize: "larger",display:"flex",alignItems:"center",justifyContent:"center",height:"50vh" }}/>
+              <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/GMail_White_HeroImage.width-1600.format-webp.webp" alt="" style={{ fontSize: "larger",display:"flex",alignItems:"center",justifyContent:"center",height:"50vh",maxWidth:"90%",marginLeft:"10px" }}/>
             </div>
           )}
         </div>
